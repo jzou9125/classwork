@@ -2,16 +2,18 @@ package attendance;
 
 public class Student implements Attendee {
 	
+	private String fName; 
+	private String lName;
 	
 	public Student(String firstName, String lastName)
 	{
-		String fName = firstName; 
-		String lName = lastName;
+		fName = firstName; 
+		lName = lastName;
 	}
 	//returns true if the student has been marked present, false otherwise
 	public boolean isPresent()
 	{
-		
+		if() 
 	}
 
 	//sets whether the student has been marked present
