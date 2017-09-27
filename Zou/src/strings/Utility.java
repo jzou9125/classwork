@@ -25,10 +25,11 @@ public class Utility{
 	public static boolean keywordIsIsolated(int psn, String keyword, String s){
 		int eStringIndex = psn + keyword.length();
 		int endOfS = s.length() - 1;
-		int isolatedB = psn - 1; 
+		int isolatedB = psn - 1;
+		int difference = endOfS - psn; 
 		if(s.substring(isolatedB,1).compareTo("a") < 0)
 		{
-			if(keyword.length() < )
+			
 			return true;
 		}
 		else
