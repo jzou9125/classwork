@@ -7,8 +7,6 @@ public class AttendanceApp {
 
 	private Attendee[] students;
 
-
-
 	public AttendanceApp(){
 
 		createStudentRecords();
@@ -44,6 +42,7 @@ public class AttendanceApp {
 
 
 	public String searchForStudent(String last){
+		
 		while(notFound(last)){
 			AttendanceMain.print("Sorry. That name was not found. Please try again. Enter the LAST name only.");
 			last = AttendanceMain.getInput();

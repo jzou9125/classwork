@@ -9,8 +9,8 @@ public class Student implements Attendee {
 	
 	public Student(String firstName, String lastName)
 	{
-		fName = firstName; 
-		lName = lastName;
+		this.fName = firstName; 
+		this.lName = lastName;
 		isHere = false; 
 	}
 	//returns true if the student has been marked present, false otherwise
@@ -22,7 +22,7 @@ public class Student implements Attendee {
 	//sets whether the student has been marked present
 	public void setPresent(boolean present)
 	{
-		isHere = present; 
+		isHere = present;
 	}
 
 	//returns the firstName
@@ -40,18 +40,18 @@ public class Student implements Attendee {
 	//returns true if 'first' and 'last' match this Attendee's firstName and lastName. This should NOT be case sensitive. 
 	public boolean mathces(String first, String last)
 	{
-		if(matches(last) && first.compareTo(fName) == 0 )
+		if(matches(last) && first.toLowerCase().equals(fName.toLowerCase()) )
 		{
 			return true;
 		}
 		return false;
 	}
 
-	
+	//can put to lowerCase
 	//returns true if 'first' matches this Attendee's firstName. This should NOT be case sensitive.
 	public boolean matches(String last)
 	{
-		if(last.compareTo(lName) == 0)
+		if(last.toLowerCase().equals(lName.toLowerCase()))
 		{
 			return true;
 		}
@@ -70,6 +70,7 @@ public class Student implements Attendee {
 		printl = lName; 
 		for( int i = 1; i<3; i++)
 		{
+			
 			while(printl.length() < (20 * i) )
 			{
 				printl += " ";
