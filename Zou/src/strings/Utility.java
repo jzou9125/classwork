@@ -27,7 +27,7 @@ public class Utility{
 		int endOfS = s.length() - 1;
 		int isolatedB = psn - 1;
 		int difference = endOfS - psn; 
-		if(s.substring(isolatedB,1).compareTo("a") < 0)
+		if(s.substring(isolatedB, isolatedB+1).compareTo("a") < 0)
 		{
 			
 			return true;

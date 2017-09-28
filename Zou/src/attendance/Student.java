@@ -67,6 +67,7 @@ public class Student implements Attendee {
 	//cut off the last three letters and replace with "..."
 	public String getReportString()
 	{
+		if(lName.length() < 20)
 		printl = lName; 
 		for( int i = 1; i<3; i++)
 		{
