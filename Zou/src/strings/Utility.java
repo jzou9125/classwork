@@ -23,16 +23,25 @@ public class Utility{
 	}
 
 	public static boolean keywordIsIsolated(int psn, String keyword, String s){
-		int eStringIndex = psn + keyword.length();
-		int endOfS = s.length() - 1;
-		int isolatedB = psn - 1;
-		int difference = endOfS - psn; 
-		if(s.substring(isolatedB, isolatedB+1).compareTo("a") < 0)
+		int startOfString = psn - 1;
+		int endOfString = psn + keyword.length();
+		
+		if(endOfString >= s.length())
 		{
-			
-			return true;
+			return false;
 		}
-		else
+		if(s.substring(startOfString, psn).compareTo("a") < 0)
+		{
+			if(s.substring(endOfString, endOfString + 1).compareTo("a") < 0)
+			{
+				return true; 
+			}
+			else 
+			{
+				return false;
+			}
+		}
+		else 
 		{
 			return false;
 		}
