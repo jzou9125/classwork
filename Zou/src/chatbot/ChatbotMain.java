@@ -11,56 +11,36 @@ public class ChatbotMain {
 		chatbot.startChatting();
 	}
 	
-	//Copied from strings Utility.java
+	
+
+	//Copied from class notes Utility class
 	/**
 	 * 
 	 * @param searchString
 	 * @param keyword
-	 * @param StartPsn
-	 * @return the index of the keyword after startPsn that is isolated and has no negations or -1 otherwise.
+	 * @param startPsn
+	 * @return the index of the keyword after startPsn that is isolated and has no negations or -1 otherwise
 	 */
-	public static int findKeyword(String searchString, String keyword, int startPsn) 
-	{
-		//make lowercase.
+	public static int findKeyword(String searchString, String keyword, int startPsn) {
+		//make lowercase
 		searchString = searchString.toLowerCase();
 		keyword = keyword.toLowerCase();
 		
 		int psn = searchString.indexOf(keyword, startPsn);
 		
-		while(psn >= 0)
-		{
-			if(keywordIsIsolated(psn, keyword, searchString) && noNegations(searchString, psn))
-			{
+		while(psn >= 0) {
+			if(keywordIsIsolated(psn,keyword,searchString) && noNegations(searchString, psn)) {
 				return psn;
-			}
-			else 
-			{
-				psn = searchString.indexOf(keyword, (psn+1)); //returns the index of the next keyword. 
+			}else {
+				psn = searchString.indexOf(keyword, psn+1);//returns the index of the NEXT keyword
 			}
 		}
+		return -1;
 	}
 	
+	
 	public static boolean keywordIsIsolated(int psn, String keyword, String s){
-		int eStringIndex = psn + keyword.length();
-		int endOfS = s.length() - 1;
-		int isolatedB = psn - 1;
-		int difference = endOfS - psn; 
-		if(s.substring(isolatedB, isolatedB+1).compareTo("a") < 0)
-		{
-			if(s.substring(eStringIndex, eStringIndex+1 || ))
-			{
-				
-			}
-			else
-			{
-				
-			}
-				
-		}
-		else
-		{
-			return false;
-		}
+		return true;
 	}
 
 	public static boolean noNegations(String s, int psn){
@@ -78,7 +58,7 @@ public class ChatbotMain {
 
 	public static void multiLinePrint(String s){
 		String printString = "";
-		int cutoff = 25;
+		int cutoff = 55;
 		//this while loop last as long as there are words left in the original String
 		while(s.length() > 0){
 
@@ -130,4 +110,5 @@ public class ChatbotMain {
 		}
 		return value;
 	}
+
 }
