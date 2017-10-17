@@ -8,7 +8,7 @@ public class ArraysMain {
 	private String[] values;
 	
 	public ArraysMain() {
-		suits = new String[4];
+		/*suits = new String[4];
 		suits[0] = "Diamond";
 		suits[1] = "Clover";
 		suits[2] = "Hearts";
@@ -24,13 +24,115 @@ public class ArraysMain {
 		values[10] = "Jack";
 		printDeck();
 		
+		int[] test = new int[30];
+		for(int i =0; i< test.length; i++)
+		{
+			test[i] = i;
+		}
+		
+		reverseOrder(test);
+		
+		test = subArray(test, 2, 600);
+		System.out.print(Arrays.toString(test));
+		*/
+		
+		//tuesdayMethods();
+		int[] test = {0,1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,2,3,4,5,6};
+		longestConsecutiveSequence(test);
+	}
+	private void longestConsecutiveSequence(int[] arr) {
+		int longest = seperateSequences(arr);
+		int currentIdx = longest;
+		while(currentIdx < arr.length)
+		{
+			int newLength = arr.length - currentIdx;
+			int check = seperateSequences(subArray(arr, currentIdx, newLength));
+			if(longest > check)
+			{
+				currentIdx += check;
+			}
+			else
+			{
+				longest = check;
+			}
+		}
+		System.out.print(longest);
+	}
+	private int seperateSequences(int[] arr) {
+		int currentIdx = 0;
+		int checker = arr[0];
+		for(int i =1; i<arr.length; i++)
+		{
+			if((checker + 1) == arr[i])
+			{
+				checker = arr[i];
+				currentIdx ++;
+			}
+			else 
+			{
+				return currentIdx;
+			}
+		}
+		return currentIdx;
+	}
+	private void tuesdayMethods() {
+		int[] orderTest = {1,2,3,4,5,6,7,8,9,10};
+		cycleThrough(orderTest, 6);
+		System.out.println(Arrays.toString(orderTest));
+	}
+	private void cycleThrough(int[] orderTest, int i) {
+		while(i != 0)
+		{
+			frontToBack(orderTest);
+			i--;
+		}
+	}
+	/**
+	 * removes first element, pushes all other elements.
+	 * @param orderTest
+	 */
+	private void frontToBack(int[] arr) {
+		int holder = arr[0];
+		for(int i = 0; i< (arr.length -1); i++)
+		{
+			swap(arr, i, i+1);
+		}
+		arr[arr.length -1] = holder;
+	}
+	private void reverseOrder(int[] arr)
+	{
+		for(int i = 0; i< (arr.length/2); i++)
+		{
+			int endIdx = (arr.length-1) -i;
+			swap(arr, i, endIdx);
+		}
+		
+		System.out.print(Arrays.toString(arr));
+	}
+	private int[] subArray(int[] arr, int psn, int length)
+	{
+		
+		if(arr.length >= (psn+length))
+		{
+			int[] newArr = new int[length];
+			for(int i =0; i< length; i++)
+			{
+				newArr[i] = arr[i+psn];
+			}
+			return newArr;
+		}
+		else 
+		{
+			System.out.print("Length is too long.");
+		}
+		return null;
 	}
 	private void printDeck() {
 		String[] deck = new String[52];
 		int idx = 0;
 		for(int i = 0; i<values.length; i++)
 		{
-			for(int e = 0; i<suits.length; i++)
+			for(int e = 0; e<suits.length; e++)
 			{
 				deck[idx] = suits[e] + values[i];
 				idx ++;
@@ -38,6 +140,7 @@ public class ArraysMain {
 		}
 		System.out.println(Arrays.toString(deck));
 	}
+	/*
 	private void shuffle(int[] arr) {
 		int[] newArr = new int[50];
 		for(int i = 0; i < arr.length; i++)
@@ -45,7 +148,8 @@ public class ArraysMain {
 			newArr[i] = 
 		}
 		
-	}
+	} 
+	*/
 	private void swap(int[] arr, int i, int j) {
 		int holder = arr[i];
 		arr[i] = arr[j];
