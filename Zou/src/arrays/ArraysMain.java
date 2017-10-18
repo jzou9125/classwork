@@ -36,11 +36,21 @@ public class ArraysMain {
 		System.out.print(Arrays.toString(test));
 		*/
 		
-		//tuesdayMethods();
-		int[] test = {0,1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,2,3,4,5,6};
+		//tuesdayMethods()
+		//wednesdayMethods();
+		int[] test = {0,1,2,3,4,5,6,2,3,4,5,6,7,8,9,10,11,12,13,1,2,3,4,4};
 		longestConsecutiveSequence(test);
 	}
-	private void longestConsecutiveSequence(int[] arr) {
+	
+	private void wednesdayMethods() {
+		int[] diceRolls = new int[10000];
+		populate(diceRolls);
+		int[] asdfa = longestConsecutiveSeqAndIndex(diceRolls);
+		
+	}
+
+	private int[] longestConsecutiveSeqAndIndex(int[] arr) {
+		int data = new int[2];
 		int longest = seperateSequences(arr);
 		int currentIdx = longest;
 		while(currentIdx < arr.length)
@@ -54,6 +64,28 @@ public class ArraysMain {
 			else
 			{
 				longest = check;
+			}
+		}
+		System.out.print(longest);
+		return null;
+	}
+
+
+	private void longestConsecutiveSequence(int[] arr) {
+		int longest = seperateSequences(arr);
+		int currentIdx = longest +1;
+		while(currentIdx < arr.length)
+		{
+			int newLength = arr.length - currentIdx;
+			int check = seperateSequences(subArray(arr, currentIdx, newLength));
+			if(check > longest)
+			{
+				currentIdx += check +1;
+				longest = check;
+			}
+			else
+			{
+				currentIdx += check +1;
 			}
 		}
 		System.out.print(longest);
