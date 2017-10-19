@@ -10,7 +10,7 @@ public class Thing {
 	
 	public String toString()
 	{
-		return "I'm a "+description+". What did expect!?";
+		return description;
 	}
 
 }
