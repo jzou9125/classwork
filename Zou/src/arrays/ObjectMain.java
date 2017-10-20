@@ -3,13 +3,11 @@ package arrays;
 public class ObjectMain {
 
 	public ObjectMain() {
-		Object[] people = new Object[34];
+		Person[] people = new Person[34];
 		populate(people);
-		for(Object p: people)
+		for(Person p: people)
 		{
-			((Person) p).mingle(people);
 			System.out.println(p);
-			p.stateFriend;
 		}
 		
 	}
@@ -97,7 +95,7 @@ public class ObjectMain {
 		}
 		return true;
 	}
-	private void populate(Object[] people) {
+	private void populate(Person[] people) {
 		for(int i = 0; i<people.length; i++)
 		{
 			String firstName = randomNameFrom(Person.FIRST_START,Person.FIRST_MIDDLE, Person.FIRST_END);

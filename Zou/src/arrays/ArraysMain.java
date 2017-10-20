@@ -50,7 +50,7 @@ public class ArraysMain {
 	}
 
 	private int[] longestConsecutiveSeqAndIndex(int[] arr) {
-		int data = new int[2];
+		int[] data = new int[2];
 		int longest = seperateSequences(arr);
 		int currentIdx = longest;
 		while(currentIdx < arr.length)
