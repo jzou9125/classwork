@@ -19,7 +19,7 @@ public class CaveRoom {
 	public CaveRoom( String description) {
 		this.description = description;
 		setDefaultContents(" ");
-		contents = defaultContents; 
+		contents = defaultContents;
 		borderingRooms = new CaveRoom[4];
 		doors = new Door[4];
 		setDirections();
@@ -32,12 +32,12 @@ public class CaveRoom {
 	 */
 	public void setDirections() {
 		directions = "";
-		boolean 
+		boolean doorFound = true;
 		for(int i =0; i< this.doors.length; i++)
 		{
 			if(this.doors[i] != null)
 			{
-				doorFound = true;
+				doorFound = false;
 				this.directions += "There is a "+ this.doors[i].getDescription()+" to "+ toDirection(i)+". "+this.doors[i].getDetails() + "/n"; 
 			}
 		}
@@ -58,6 +58,67 @@ public class CaveRoom {
 		return directions[dir];
 	}
 	
+	public void enter()
+	{
+		this.contents = "X";
+	}
+	
+	public void leave()
+	{
+		this.contents = defaultContents;
+	}
+	
+	public void setConnection(int direction, CaveRoom anotherRoom, Door door)
+	{
+		addRoom(direction, anotherRoom, door);
+		anotherRoom.addRoom(oppositeDirection(direction), this, door);
+	}
+	
+	public void addRoom(int dir, CaveRoom caveRoom, Door door) {
+		borderingRooms[dir] = caveRoom;
+		doors[dir] = door;
+		setDirections(); //update Directions
+	}
+	
+	public void interpretInput(String input)
+	{
+		while(!isValid(input))
+		{
+			System.out.println("You can only enter 'w', 'a', 's', or 'd'");
+			input = CaveExplorer.in.nextLine();
+		}
+		int direction = "wdsa".indexOf(input);
+		goToRoom(direction);
+	}
+	
+	private boolean isValid(String input) {
+		return "wdsa".indexOf(input.toLowerCase()) > -1 && input.length() == 1;
+	}
+	
+	public static void setUpCaves()
+	{
+		
+	}
+	
+	public void goToRoom(int dir)
+	{
+		if(borderingRooms[dir] != null && doors[dir] != null && doors[dir].isOpen())
+		{
+			CaveExplorer.currentRoom.leave(); 
+			CaveExplorer.currentRoom = borderingRooms[dir];
+			CaveExplorer.currentRoom.enter();
+			CaveExplorer.inventory.updateMap();
+		}
+		else
+		{
+			System.err.println("You can't do that");
+		}
+	}
+
+	public static int oppositeDirection(int dir) {
+		return (dir+2)%4;
+	}
+
 	public String getDescription() {
 		return description;
 	}

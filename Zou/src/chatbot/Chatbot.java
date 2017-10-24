@@ -7,7 +7,7 @@ public class Chatbot {
 	private Topic ben;
 	
 	public Chatbot() {
-		ben = new ChatbotBen();
+		ben = new ChatbotJasonZ();
 		username = "Unknown User";
 		chatting = true;
 	}
