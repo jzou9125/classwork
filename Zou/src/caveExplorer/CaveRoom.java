@@ -95,9 +95,28 @@ public class CaveRoom {
 		return "wdsa".indexOf(input.toLowerCase()) > -1 && input.length() == 1;
 	}
 	
+	/**
+	 * Determine the size of the cave:
+	 */
 	public static void setUpCaves()
 	{
+		CaveExplorer.caves = new CaveRoom[5][5];
+		CaveRoom[][] c = CaveExplorer.caves; // shortcut
+		for(int row = 0; row < c.length; row++)
+		{
+			for(int col = 0; col < c[row].length; col ++)
+			{
+				c[row][col] = new CaveRoom("This has coordinates "+ row +", " + col+".");
+			}
+		}
+		//Replace some default rooms with custom rooms (SAVE FOR LATER) 
 		
+		//Set Starting Room
+		CaveExplorer.currentRoom = c[0][1];
+		CaveExplorer.currentRoom.enter();
+		
+		//Set up doors
+		c[0][1].setConnection(SOUTH, c[1][1], new Door());
 	}
 	
 	public void goToRoom(int dir)
