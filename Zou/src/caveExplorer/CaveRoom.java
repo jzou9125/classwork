@@ -43,6 +43,10 @@ public class CaveRoom {
 		}
 	}
 	
+	public Door getDoor(int direction) {
+		return doors[direction];
+	}
+
 	/**
 	 * converts an int to a direction:
 	 * 0 = north
