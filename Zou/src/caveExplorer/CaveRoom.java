@@ -86,19 +86,49 @@ public class CaveRoom {
 	
 	public void interpretInput(String input)
 	{
+		
 		while(!isValid(input))
 		{
-			System.out.println("You can only enter 'w', 'a', 's', or 'd'");
+			printValidMoves();
+			
 			input = CaveExplorer.in.nextLine();
 		}
-		int direction = "wdsa".indexOf(input);
-		goToRoom(direction);
+		int direction = validMoves().indexOf(input);
+		if(direction<4)
+		{
+			goToRoom(direction);
+		}
+		else
+		{
+			performAction(direction);
+		}
+		
 	}
 	
-	private boolean isValid(String input) {
-		return "wdsa".indexOf(input.toLowerCase()) > -1 && input.length() == 1;
+	/**
+	 * Override to create response to keys other than wdsa
+	 * @param direction
+	 */
+	public void performAction(int direction) {
+		CaveExplorer.print("that key does nothing.");
+		
+	}
+
+	/**
+	 * Override to change description of possible moves
+	 */
+	public void printValidMoves() {
+		System.out.println("You can only enter 'w', 'a', 's', or 'd'");
+	}
+
+	public boolean isValid(String input) {
+		return validMoves().indexOf(input.toLowerCase()) > -1 && input.length() == 1;
 	}
 	
+	public String validMoves()
+	{
+		return "wdsa"; 
+	}
 	/**
 	 * Determine the size of the cave:
 	 */

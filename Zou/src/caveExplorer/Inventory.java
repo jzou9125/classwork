@@ -40,7 +40,7 @@ public class Inventory {
 					{
 						if(i ==1)
 						{
-							text += " "+ cr.getContents();
+							text += " "+ cr.getContents() + " ";
 						}
 						else
 						{
