@@ -38,7 +38,7 @@ public class CaveRoom {
 			if(this.doors[i] != null)
 			{
 				doorFound = false;
-				this.directions += "There is a "+ this.doors[i].getDescription()+" to "+ toDirection(i)+". "+this.doors[i].getDetails() + "/n"; 
+				this.directions += "There is a "+ this.doors[i].getDescription()+" to "+ toDirection(i)+". "+this.doors[i].getDetails(); 
 			}
 		}
 	}
@@ -134,17 +134,20 @@ public class CaveRoom {
 	 */
 	public static void setUpCaves()
 	{
-		CaveExplorer.caves = new CaveRoom[5][5];
+		CaveExplorer.caves = new NPCRoom[5][5];
 		CaveRoom[][] c = CaveExplorer.caves; // shortcut
 		for(int row = 0; row < c.length; row++)
 		{
 			for(int col = 0; col < c[row].length; col ++)
 			{
-				c[row][col] = new CaveRoom("This has coordinates "+ row +", " + col+".");
+				c[row][col] = new NPCRoom("This has coordinates "+ row +", " + col+".");
 			}
 		}
 		//Replace some default rooms with custom rooms (SAVE FOR LATER) 
-		
+		NPC testNPC = new NPC();
+		CaveExplorer.npcs = new NPC[1];
+		CaveExplorer.npcs[0] = testNPC;
+		testNPC.setPosition(1,1);
 		//Set Starting Room
 		CaveExplorer.currentRoom = c[0][1];
 		CaveExplorer.currentRoom.enter();
