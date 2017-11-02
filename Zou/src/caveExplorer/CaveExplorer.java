@@ -26,6 +26,7 @@ public class CaveExplorer {
 		{
 			moveNPCs();
 			print(inventory.getDescription());
+			System.out.println("You have $"+inventory.getCash());
 			print(currentRoom.getDescription());
 			print(currentRoom.getDirections());
 			print(" what would you like to do?");
@@ -39,4 +40,5 @@ public class CaveExplorer {
 		}
 		inventory.updateMap();
 	}
+
 }

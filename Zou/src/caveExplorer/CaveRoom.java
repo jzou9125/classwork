@@ -143,19 +143,45 @@ public class CaveRoom {
 				c[row][col] = new NPCRoom("This has coordinates "+ row +", " + col+".");
 			}
 		}
+		c[0][0] = new TreasureRoom("");
 		//Replace some default rooms with custom rooms (SAVE FOR LATER) 
 		NPC testNPC = new NPC();
-		CaveExplorer.npcs = new NPC[1];
+		Princess testPNPC = new Princess();
+		CaveExplorer.npcs = new NPC[2];
 		CaveExplorer.npcs[0] = testNPC;
-		testNPC.setPosition(1,1);
+		CaveExplorer.npcs[1] = testPNPC;
+		testNPC.setPosition(3,4);
+		testPNPC.setPosition(c.length-1, c[c.length-1].length-1);
 		//Set Starting Room
 		CaveExplorer.currentRoom = c[0][1];
 		CaveExplorer.currentRoom.enter();
 		
 		//Set up doors
-		c[0][1].setConnection(SOUTH, c[1][1], new Door());
+		setConnectionForAll();
 	}
 	
+	private static void setConnectionForAll() {
+		CaveRoom[][] c = CaveExplorer.caves;
+		for(int row = 0; row< c.length-1; row++)
+		{
+			for(int col = 0; col < c.length-1; col++)
+			{
+				c[row][col].setConnection(SOUTH, c[row+1][col], new Door());
+				c[row][col].setConnection(EAST, c[row][col+1], new Door());
+			}
+		}
+		
+		for(int i = 0; i<c[c.length-1].length-1; i++)
+		{
+			c[c.length-1][i].setConnection(EAST, c[c.length-1][i+1], new Door());
+		}
+		
+		for(int i = 0; i< c.length-1; i++)
+		{
+			c[i][c[i].length-1].setConnection(SOUTH, c[i][c[i].length-1], new Door());
+		}
+	}
+
 	public void goToRoom(int dir)
 	{
 		if(borderingRooms[dir] != null && doors[dir] != null && doors[dir].isOpen())
