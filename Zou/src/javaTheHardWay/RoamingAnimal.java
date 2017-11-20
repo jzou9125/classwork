@@ -39,8 +39,8 @@ public class RoamingAnimal extends Animal {
 			{
 				if(a != null) a.act();
 			}
+			h.growPlants();
 		}
-		h.growPlants();
 		System.out.println("\n"+ h);
 		
 	}
