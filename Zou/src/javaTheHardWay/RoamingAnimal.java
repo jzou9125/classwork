@@ -78,4 +78,5 @@ public class RoamingAnimal extends Animal {
 		return habitat.eatPlants();
 	}
 
+
 }

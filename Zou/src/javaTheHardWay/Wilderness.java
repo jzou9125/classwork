@@ -13,7 +13,7 @@ public class Wilderness extends Habitat {
 		w.simulate(3);
 	}
 
-	private void simulate(int rounds) {
+	void simulate(int rounds) {
 		for(int i = 0; i< rounds; i++)
 		{
 			for(Animal a: getAnimals())
