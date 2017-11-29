@@ -79,10 +79,14 @@ public class Searching {
 	}
 
 	public static int binarySearch(int[] searchThis, int startIndex, int endIndex, int target) {
-		if( searchThis[startIndex] <= target && searchThis[endIndex] >= target)
+
+		int halfway = (int) (startIndex + endIndex)/2;
+		if( endIndex - startIndex == 1 && searchThis[halfway] != target)
 		{
-			
-			int halfway = (int) (Math.floor((startIndex + endIndex)/2));
+			return -1;
+		}
+		if( startIndex <= endIndex && searchThis[halfway] != target)
+		{
 			if(searchThis[halfway] == target){
 				return halfway;
 			}
@@ -91,7 +95,7 @@ public class Searching {
 			}
 			else if (searchThis[halfway] > target) {
 				return binarySearch(searchThis, startIndex, halfway, target);
-			}	
+			}
 		}
 		
 		return -1;
