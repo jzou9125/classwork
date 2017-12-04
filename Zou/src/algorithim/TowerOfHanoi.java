@@ -11,9 +11,9 @@ public class TowerOfHanoi {
 	{
 		if( n > 1)
 		{
-			solve( n-1, start, end, helper);
-			System.out.println(start+" to "+end);
-			solve(n-1, helper, start, end);
+			solve( n-1, start, end, helper); // move n-1 disks away from the start
+			System.out.println(start+" to "+end); // move the last disk
+			solve(n-1, helper, start, end); // move the n-1 disk towards the end.
 		}
 		else
 		{
